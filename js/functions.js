@@ -13,12 +13,9 @@
 */
 
 // Функция для проверки длины строки
-const stringLengthCheck = (string, maxLength) => {
-  const check = string.length <= maxLength;
-  return check;
-};
+const stringLengthCheck = (string, maxLength) => string.length <= maxLength;
 
-// Проверки работы функции
+// Проверка работы функции
 console.log('Ожидаю true, получаю - ', stringLengthCheck('Hello!', 20));
 console.log('Ожидаю true, получаю - ', stringLengthCheck('Hello', 444444));
 console.log('Ожидаю false, получаю - ', stringLengthCheck('Hello', 4));
@@ -27,12 +24,13 @@ console.log('Ожидаю false, получаю - ', stringLengthCheck('Helloooo
 // Функция для проверки, является ли строка палиндромом
 const isPalindrome = (string) => {
   const normalised = string.toLowerCase().replaceAll(' ', '');
-  let newString = '';
+  let reversed = '';
+
   for (let i = normalised.length - 1; i >= 0; i--) {
-    newString += normalised.at(i);
+    reversed += normalised.at(i);
   }
-  const result = newString === normalised;
-  return result;
+
+  return reversed === normalised;
 };
 
 // Проверка работы функции
