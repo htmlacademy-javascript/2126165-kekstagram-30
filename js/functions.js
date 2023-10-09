@@ -23,3 +23,20 @@ console.log('Ожидаю true, получаю - ', stringLengthCheck('Hello!', 
 console.log('Ожидаю true, получаю - ', stringLengthCheck('Hello', 444444));
 console.log('Ожидаю false, получаю - ', stringLengthCheck('Hello', 4));
 console.log('Ожидаю false, получаю - ', stringLengthCheck('Hellooooooo', 4));
+
+// Функция для проверки, является ли строка палиндромом
+const isPalindrome = (string) => {
+  const normalised = string.toLowerCase().replaceAll(' ', '');
+  let newString = '';
+  for (let i = normalised.length - 1; i >= 0; i--) {
+    newString += normalised.at(i);
+  }
+  const result = newString === normalised;
+  return result;
+};
+
+console.log('Ожидаю true, получаю - ', isPalindrome('А лис он умен крыса сыр к нему носила'));
+console.log('Ожидаю true, получаю - ', isPalindrome('ДовОд'));
+console.log('Ожидаю true, получаю - ', isPalindrome('а р о з а упала на л а п у   аз о ра'));
+console.log('Ожидаю false, получаю - ', isPalindrome('Кекс'));
+console.log('Ожидаю false, получаю - ', isPalindrome('горошек'));
