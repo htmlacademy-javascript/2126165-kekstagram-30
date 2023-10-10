@@ -1,11 +1,10 @@
 // Функция для проверки длины строки
 const isLengthValid = (string, maxLength) => string.length <= maxLength;
 
-// Проверка работы функции
-console.log('Ожидаю true, получаю - ', isLengthValid('Hello!', 20));
-console.log('Ожидаю true, получаю - ', isLengthValid('Hello', 444444));
-console.log('Ожидаю false, получаю - ', isLengthValid('Hello', 4));
-console.log('Ожидаю false, получаю - ', isLengthValid('Hellooooooo', 4));
+isLengthValid('Hello!', 20); // true
+isLengthValid('Hello', 444444); // true
+isLengthValid('Hello', 4); // false
+isLengthValid('Hellooooooo', 4); // false
 
 // Функция для проверки, является ли строка палиндромом
 const isPalindrome = (sequence) => {
@@ -25,13 +24,12 @@ const isPalindrome = (sequence) => {
 //   return sequence.split().reverse().join();
 // };
 
-// Проверка работы функции
-console.log('Ожидаю true, получаю - ', isPalindrome('А лис он умен крыса сыр к нему носила'));
-console.log('Ожидаю true, получаю - ', isPalindrome('ДовОд'));
-console.log('Ожидаю true, получаю - ', isPalindrome('а р о з а упала на л а п у   аз о ра'));
-console.log('Ожидаю false, получаю - ', isPalindrome('Кекс'));
-console.log('Ожидаю false, получаю - ', isPalindrome('горошек'));
-console.log('Ожидаю true, получаю - ', isPalindrome(12321));
+isPalindrome('А лис он умен крыса сыр к нему носила'); // true
+isPalindrome('ДовОд'); // true
+isPalindrome('а р о з а упала на л а п у   аз о ра'); // true
+isPalindrome(12321); // true
+isPalindrome('Кекс'); // false
+isPalindrome('горошек'); // false
 
 // Функция извлечения чисел из строк
 const pullingDigits = (value) => {
@@ -54,10 +52,9 @@ const pullingDigits = (value) => {
 //   return parseInt(result, 10);
 // };
 
-// Проверка работы функции
-console.log(pullingDigits(2023));
-console.log(pullingDigits('ECMAScript 2022'));
-console.log(pullingDigits('1 кефир, 0.5 батона'));
-console.log(pullingDigits('агент 007'));
-console.log(pullingDigits('а я томат'));
-console.log(pullingDigits(-1));
+pullingDigits(2023); // 2023
+pullingDigits('ECMAScript 2022'); // 2022
+pullingDigits('1 кефир, 0.5 батона'); // 105
+pullingDigits('агент 007'); // 7
+pullingDigits('а я томат'); // NaN
+pullingDigits(-1); // 1
