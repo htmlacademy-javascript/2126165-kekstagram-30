@@ -8,7 +8,7 @@ isLengthValid('Hellooooooo', 4); // false
 
 // Функция для проверки, является ли строка палиндромом
 const isPalindrome = (sequence) => {
-  sequence = sequence.toString().toLowerCase().replaceAll(' ', '');
+  sequence = String(sequence).toLowerCase().replaceAll(' ', '');
   let reversed = '';
 
   for (let i = sequence.length - 1; i >= 0; i--) {
@@ -20,7 +20,7 @@ const isPalindrome = (sequence) => {
 
 // Без использования цикла
 // const isPalindrome = (sequence) => {
-//   sequence = sequence.toString().toLowerCase().replaceAll(' ', '');
+//   sequence = String(sequence).toLowerCase().replaceAll(' ', '');
 //   return sequence.split().reverse().join();
 // };
 
@@ -33,7 +33,7 @@ isPalindrome('горошек'); // false
 
 // Функция извлечения чисел из строк
 const pullingDigits = (value) => {
-  value = value.toString();
+  value = String(value);
   let result = '';
 
   for (let i = 0; i < value.length; i++) {
@@ -47,8 +47,7 @@ const pullingDigits = (value) => {
 
 // Без использования цикла
 // const pullingDigits = (value) => {
-//   value = value.toString();
-//   const result = value.replace(/\D/g, '');
+//   const result = String(value).replace(/\D/g, '');
 //   return parseInt(result, 10);
 // };
 
