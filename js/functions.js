@@ -1,5 +1,5 @@
 // Функция для проверки длины строки
-const validateMaxLength = (string, maxLength) => string.length <= maxLength;
+const validateMaxLength = (text, maxLength) => text.length <= maxLength;
 
 validateMaxLength('Hello!', 20); // true
 validateMaxLength('Hello', 444444); // true
