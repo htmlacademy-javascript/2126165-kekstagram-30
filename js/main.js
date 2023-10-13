@@ -4,4 +4,9 @@ const getRandomItem = (items) => {
   return items[index];
 };
 
-void(getRandomItem);
+const getRandomInteger = (min, max) => {
+  const fraction = (max - min) * Math.random() + min;
+  return Math.round(fraction);
+};
+
+void(getRandomItem, getRandomInteger);
