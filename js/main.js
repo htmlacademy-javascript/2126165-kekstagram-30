@@ -17,7 +17,7 @@ const createCommentsData = (itemCount) => {
     id: start + index,
     avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
     message: getRandomItem(messages),
-    name: getRandomItem(names),
+    name: getRandomItem(names)
   }));
 };
 
