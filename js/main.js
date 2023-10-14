@@ -29,8 +29,8 @@ const createPicturesData = (itemCount = 25) => {
     url: `photos/${start + index}.jpg`,
     description: getRandomItem(descriptions),
     likes: getRandomInteger(15, 200),
-    comments: [createCommentsData(getRandomInteger(0, 30))]
+    comments: createCommentsData(getRandomInteger(0, 30))
   }));
 };
 
-void (getRandomItem, getRandomInteger, createPicturesData, createCommentsData);
+void(getRandomItem, getRandomInteger, createPicturesData, createCommentsData);
