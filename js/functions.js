@@ -33,4 +33,12 @@ const getHoursToMinutes = (time) => {
   return Number(hours) * 60 + Number(minutes);
 };
 
-void (validateMaxLength, isPalindrome, parseDigits);
+// Функция проверки, не выходит ли время встречи за пределы рабочего дня
+const isMeetingInWorkingTime = (workingStart, workingEnd, meetingStart, meetingDuration) => {
+  workingStart = getHoursToMinutes(workingStart);
+  workingEnd = getHoursToMinutes(workingEnd);
+  meetingStart = getHoursToMinutes(meetingStart);
+  return workingStart <= meetingStart && workingEnd >= (meetingStart + meetingDuration);
+};
+
+void (validateMaxLength, isPalindrome, parseDigits, isMeetingInWorkingTime);
