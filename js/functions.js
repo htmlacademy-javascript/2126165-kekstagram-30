@@ -27,4 +27,10 @@ const parseDigits = (value) => {
   return parseInt(result, 10);
 };
 
-void(validateMaxLength, isPalindrome, parseDigits);
+// Функция перевода часов в минуты
+const getHoursToMinutes = (time) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+void (validateMaxLength, isPalindrome, parseDigits, getHoursToMinutes);
