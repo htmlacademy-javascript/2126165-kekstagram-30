@@ -9,4 +9,4 @@ const getRandomInteger = (min, max) => {
   return Math.round(fraction);
 };
 
-export { getRandomItem, getRandomInteger };
+export {getRandomItem, getRandomInteger};

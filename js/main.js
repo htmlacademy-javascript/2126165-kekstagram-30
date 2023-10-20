@@ -1,3 +1,3 @@
-import { createPicturesData } from './data.js';
+import {createPicturesData} from './data.js';
 
 void (createPicturesData);
