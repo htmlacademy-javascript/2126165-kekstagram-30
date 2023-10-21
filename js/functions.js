@@ -29,8 +29,8 @@ const parseDigits = (value) => {
 
 // Функция перевода часов в минуты
 const getHoursToMinutes = (time) => {
-  const [hours, minutes] = time.split(':');
-  return Number(hours) * 60 + Number(minutes);
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 60 + minutes;
 };
 
 // Функция проверки, не выходит ли время встречи за пределы рабочего дня
