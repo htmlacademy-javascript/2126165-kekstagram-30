@@ -34,11 +34,11 @@ const getHoursToMinutes = (time) => {
 };
 
 // Функция проверки, не выходит ли время встречи за пределы рабочего дня
-const isMeetingInWorkingTime = (workingStart, workingEnd, meetingStart, meetingDuration) => {
+const validateMeetingTime = (workingStart, workingEnd, meetingStart, meetingDuration) => {
   workingStart = getHoursToMinutes(workingStart);
   workingEnd = getHoursToMinutes(workingEnd);
   meetingStart = getHoursToMinutes(meetingStart);
   return workingStart <= meetingStart && workingEnd >= (meetingStart + meetingDuration);
 };
 
-void (validateMaxLength, isPalindrome, parseDigits, isMeetingInWorkingTime);
+void (validateMaxLength, isPalindrome, parseDigits, validateMeetingTime);
