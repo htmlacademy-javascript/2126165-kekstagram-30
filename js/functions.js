@@ -27,4 +27,18 @@ const parseDigits = (value) => {
   return parseInt(result, 10);
 };
 
-void(validateMaxLength, isPalindrome, parseDigits);
+// Функция перевода часов в минуты
+const getHoursToMinutes = (time) => {
+  const [hours, minutes] = time.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+// Функция проверки, не выходит ли время встречи за пределы рабочего дня
+const validateMeetingTime = (workingStart, workingEnd, meetingStart, meetingDuration) => {
+  workingStart = getHoursToMinutes(workingStart);
+  workingEnd = getHoursToMinutes(workingEnd);
+  meetingStart = getHoursToMinutes(meetingStart);
+  return workingStart <= meetingStart && workingEnd >= (meetingStart + meetingDuration);
+};
+
+void (validateMaxLength, isPalindrome, parseDigits, validateMeetingTime);
