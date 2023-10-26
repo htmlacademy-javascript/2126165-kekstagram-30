@@ -1,4 +1,5 @@
 const template = document.querySelector('#picture');
+const container = document.querySelector('.pictures');
 
 const createThumbnails = (picturesData) => picturesData.map((properties) => {
   const {url, description, likes, comments} = properties;
@@ -9,3 +10,9 @@ const createThumbnails = (picturesData) => picturesData.map((properties) => {
   thumbnail.querySelector('.picture__likes').textContent = likes;
   return thumbnail;
 });
+
+const renderThumbnails = (picturesData) => {
+  container.append(...createThumbnails(picturesData));
+};
+
+export {renderThumbnails};
