@@ -9,4 +9,8 @@ const getRandomInteger = (min, max) => {
   return Math.round(fraction);
 };
 
-export {getRandomItem, getRandomInteger};
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomItem, getRandomInteger, isEnterKey, isEscapeKey};
