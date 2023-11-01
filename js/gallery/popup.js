@@ -4,44 +4,35 @@ const popup = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
 
 const onDocumentKeydown = (event) => {
-  if (event.key.startWith('Esc')) {
+  if (event.key.startsWith('Esc')) {
     closeButton.click();
   }
 };
 
-const onCloseButtonClick = () => {
-  closePopup();
+const openPopup = () => {
+  popup.classList.remove('hidden');
+  popup.scroll(0, 0);
+  document.body.classList.add('modal-open');
+  document.addEventListener('keydown', onDocumentKeydown);
 };
 
-function showPopup() {
-  popup.classList.remove('hidden');
-  document.querySelector('body').classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
-  closeButton.addEventListener('click', onCloseButtonClick);
-}
-
-function closePopup() {
+const closePopup = () => {
   popup.classList.add('hidden');
-  document.querySelector('body').classList.remove('modal-open');
+  document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  closeButton.removeEventListener('click', onCloseButtonClick);
-}
+};
 
-const renderPopupDetails = (properties) => {
+const renderPopup = (properties) => {
   const {url, description, likes, comments} = properties;
+
   popup.querySelector('.big-picture__img img').src = url;
   popup.querySelector('.big-picture__img img').alt = description;
   popup.querySelector('.likes-count').textContent = likes;
   popup.querySelector('.social__caption').textContent = description;
   renderComments(comments);
+  openPopup();
 };
 
-const onThumbnailClick = () => {
-  document.addEventListener('thumbnailSelect', (event) => {
-    event.preventDefault();
-    renderPopupDetails(event.detail);
-    showPopup();
-  });
-};
+closeButton.addEventListener('click', () => closePopup());
 
-export {onThumbnailClick};
+export {renderPopup};
