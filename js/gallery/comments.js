@@ -6,7 +6,7 @@ const loader = document.querySelector('.comments-loader');
 counter.classList.add('hidden'); // временно скрывает блок счётчика комментариев
 loader.classList.add('hidden'); // временно скрывает блок загрузки новых комментариев
 
-const createComment = (comments) => comments.map((properties) => {
+const createComments = (commentsData) => commentsData.map((properties) => {
   const {avatar, name, message} = properties;
   const comment = template.cloneNode(true);
 
@@ -17,9 +17,8 @@ const createComment = (comments) => comments.map((properties) => {
   return comment;
 });
 
-const renderComments = (comments) => {
-  container.querySelectorAll('.social__comment').forEach((commentElement) => commentElement.remove());
-  container.append(...createComment(comments));
+const renderComments = (commentsData) => {
+  container.replaceChildren(...createComments(commentsData));
 };
 
 export {renderComments};
