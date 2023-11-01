@@ -4,9 +4,9 @@ import {renderComments} from './comments.js';
 const popup = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
+const onDocumentKeydown = (event) => {
+  if (isEscapeKey(event)) {
+    event.preventDefault();
     closePopup();
   }
 };
@@ -39,9 +39,9 @@ const renderPopupDetails = (properties) => {
 };
 
 const onThumbnailClick = () => {
-  document.addEventListener('thumbnailSelect', (evt) => {
-    evt.preventDefault();
-    renderPopupDetails(evt.detail);
+  document.addEventListener('thumbnailSelect', (event) => {
+    event.preventDefault();
+    renderPopupDetails(event.detail);
     showPopup();
   });
 };
