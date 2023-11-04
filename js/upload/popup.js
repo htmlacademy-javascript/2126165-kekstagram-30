@@ -25,6 +25,7 @@ const openPopup = () => {
 const closePopup = () => {
   popup.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  pictureUpload.value = '';
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
