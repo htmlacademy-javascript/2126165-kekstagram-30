@@ -3,7 +3,6 @@ const template = document.querySelector('.social__comment');
 const shownCounter = document.querySelector('.social__comment-shown-count');
 const totalCounter = document.querySelector('.social__comment-total-count');
 const loaderButton = document.querySelector('.social__comments-loader');
-const stepOfDisplayedComments = 5;
 
 const createComments = (commentsData) => commentsData.map((properties) => {
   const {avatar, name, message} = properties;
@@ -28,16 +27,12 @@ const renderComments = (commentsData, step = 5) => {
 
   container.replaceChildren();
 
-  if (currentCommentsData.length <= stepOfDisplayedComments) {
-    container.replaceChildren(...createComments(currentCommentsData));
-    shownCounter.textContent = currentCommentsData.length;
-    loaderButton.classList.add('hidden');
-  } else {
-    container.replaceChildren(...createComments(currentCommentsData.splice(0, stepOfDisplayedComments)));
-    shownCounter.textContent = stepOfDisplayedComments;
-    loaderButton.classList.remove('hidden');
-    loaderButton.addEventListener('click', onLoaderButtonClick);
-  }
+  loaderButton.addEventListener('click', onLoaderButtonClick);
+  loaderButton.click();
+
+  document.addEventListener('popupClose', () => {
+    loaderButton.removeEventListener('click', onLoaderButtonClick);
+  }, {once: true});
 };
 
 export {renderComments};
