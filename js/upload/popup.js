@@ -28,12 +28,6 @@ const closePopup = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
-const renderPopup = () => {
-  pictureUpload.addEventListener('change', () => {
-    openPopup();
-  });
-};
-
 closeButton.addEventListener('click', () => closePopup());
 
 export {renderPopup};
