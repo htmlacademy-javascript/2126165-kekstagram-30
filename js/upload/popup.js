@@ -1,3 +1,4 @@
+const pictureUpload = document.querySelector('.img-upload__input');
 const popup = document.querySelector('.img-upload__overlay');
 const closeButton = document.querySelector('.img-upload__cancel');
 const hashtagField = document.querySelector('.text__hashtags');
@@ -27,6 +28,12 @@ const closePopup = () => {
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
+const renderPopup = () => {
+  pictureUpload.addEventListener('change', () => {
+    openPopup();
+  });
+};
+
 closeButton.addEventListener('click', () => closePopup());
 
-export {openPopup};
+export {renderPopup};
