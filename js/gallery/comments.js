@@ -16,20 +16,17 @@ const createComments = (commentsData) => commentsData.map((properties) => {
   return comment;
 });
 
-let currentCommentsData = [];
+const renderComments = (commentsData, step = 5) => {
+  const currentCommentsData = [...commentsData];
 
-const onLoaderButtonClick = () => {
-  container.append(...createComments(currentCommentsData.splice(0, stepOfDisplayedComments)));
-  shownCounter.textContent = container.querySelectorAll('.social__comment').length;
+  const onLoaderButtonClick = () => {
+    container.append(...createComments(currentCommentsData.splice(0, step)));
+    shownCounter.textContent = commentsData.length - currentCommentsData.length;
+    totalCounter.textContent = commentsData.length;
+    loaderButton.classList.toggle('hidden', !currentCommentsData.length);
+  };
 
-  if (currentCommentsData.length === 0) {
-    loaderButton.classList.add('hidden');
-  }
-};
-
-const renderComments = (commentsData) => {
-  currentCommentsData = structuredClone(commentsData);
-  totalCounter.textContent = commentsData.length;
+  container.replaceChildren();
 
   if (currentCommentsData.length <= stepOfDisplayedComments) {
     container.replaceChildren(...createComments(currentCommentsData));
