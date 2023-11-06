@@ -7,7 +7,7 @@ const onDocumentKeydown = (event) => {
   }
 };
 
-const onOverlayClick = (event) => {
+const onPopupOverlayClick = (event) => {
   if (event.target === popup) {
     closeButton.click();
   }
@@ -18,14 +18,14 @@ const openPopup = () => {
   popup.scroll(0, 0);
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-  document.addEventListener('click', onOverlayClick);
+  document.addEventListener('click', onPopupOverlayClick);
 };
 
 const closePopup = () => {
   popup.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-  document.removeEventListener('click', onOverlayClick);
+  document.removeEventListener('click', onPopupOverlayClick);
 };
 
 closeButton.addEventListener('click', () => closePopup());
