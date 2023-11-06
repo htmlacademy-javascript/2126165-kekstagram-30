@@ -2,9 +2,6 @@ import '../../vendor/pristine/pristine.min.js';
 import {getUniqueArrayItems} from '../utilities.js';
 
 const form = document.querySelector('.img-upload__form');
-const hashtagField = document.querySelector('.text__hashtags');
-const commentField = document.querySelector('.text__description');
-const hashtagPattern = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -44,41 +41,10 @@ pristine.addValidator(form.hashtags, (value) => {
   return split(value).every((hashtag) => hashtagPattern.test(hashtag));
 }, 'Строка после решётки должна состоять из букв и чисел и не может содержать спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.', 1, true);
 
-  return true;
-};
-
-const validateHashtagData = (hashtagValue) => {
-
-  if (hashtagValue) {
-    const hashtagData = hashtagValue.toLowerCase().split(' ');
-
-    for (let i = 0; i < hashtagData.length; i++) {
-      if (!validateHashtag(hashtagData[i])) {
-        return false;
-      }
-    }
-
-    if (hashtagData.length > 5) {
-      error = 'Нельзя указать больше пяти хэш-тегов';
-      return false;
-    }
-
-    if (getUniqueArrayItems(hashtagData).length !== hashtagData.length) {
-      error = 'Один и тот же хэш-тег не может быть использован дважды';
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const getHashtagError = () => error;
-
-const validateComment = (value) => value.length <= 140;
-
-pristine.addValidator(hashtagField, validateHashtagData, getHashtagError);
-
-pristine.addValidator(commentField, validateComment, 'Длина комментария не может составлять больше 140 символов');
+pristine.addValidator(form.description, (value) => {
+  const maxDescriptionLength = 140;
+  return value.length <= maxDescriptionLength;
+}, 'Длина комментария не может составлять больше 140 символов', 1, true);
 
 const validateForm = () => {
   pristine.validate();
