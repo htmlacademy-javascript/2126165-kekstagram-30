@@ -12,34 +12,37 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error'
 });
 
-let error;
+const split = (value) => value.split(' ').filter(Boolean);
 
-const validateHashtag = (hashtag) => {
+pristine.addValidator(form.hashtags, (value) => {
+  const hashtags = split(value.toLowerCase());
+  return hashtags.length === new Set(hashtags).size;
+}, 'Один и тот же хэш-тег не может быть использован дважды', 1, true);
 
-  if (hashtag[0] !== '#') {
-    error = 'Хэш-тег должен начинаться с символа # (решётка)';
-    return false;
-  }
+pristine.addValidator(form.hashtags, (value) => {
+  const maxHashtags = 5;
+  return split(value).length <= maxHashtags;
+}, 'Нельзя указать больше пяти хэш-тегов', 1, true);
 
-  if (hashtag.length > 20) {
-    error = 'Максимальная длина одного хэш-тега 20 символов, включая решётку';
-    return false;
-  }
+pristine.addValidator(form.hashtags, (value) => {
+  const maxHashtagsLength = 20;
+  return split(value).every((hashtag) => hashtag.length <= maxHashtagsLength);
+}, 'Максимальная длина одного хэш-тега 20 символов, включая решётку', 1, true);
 
-  if (hashtag === '#') {
-    error = 'Хеш-тег не может состоять только из одной решётки';
-    return false;
-  }
+pristine.addValidator(form.hashtags, (value) => {
+  const firstSymbol = '#';
+  return split(value).every((hashtag) => hashtag[0] === firstSymbol);
+}, 'Хэш-тег должен начинаться с символа # (решётка)', 1, true);
 
-  if (hashtag[1] === ' ') {
-    error = 'Строка после решётки не может содержать пробелы';
-    return false;
-  }
+pristine.addValidator(form.hashtags, (value) => {
+  const symbol = '#';
+  return split(value).every((hashtag) => hashtag !== symbol);
+}, 'Хеш-тег не может состоять только из одной решётки', 1, true);
 
-  if (!hashtagPattern.test(hashtag)) {
-    error = 'Строка после решётки должна состоять из букв и чисел и не может содержать спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.';
-    return false;
-  }
+pristine.addValidator(form.hashtags, (value) => {
+  const hashtagPattern = /^#[a-zа-я0-9]+$/i;
+  return split(value).every((hashtag) => hashtagPattern.test(hashtag));
+}, 'Строка после решётки должна состоять из букв и чисел и не может содержать спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.', 1, true);
 
   return true;
 };
