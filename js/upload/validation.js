@@ -1,5 +1,5 @@
 import '../../vendor/pristine/pristine.min.js';
-import {getUnique} from '../utilities.js';
+import {getUniqueArrayItems} from '../utilities.js';
 
 const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
@@ -54,7 +54,7 @@ const validateHashtagData = (hashtagValue) => {
       return false;
     }
 
-    if (getUnique(hashtagData).length !== hashtagData.length) {
+    if (getUniqueArrayItems(hashtagData).length !== hashtagData.length) {
       error = 'Один и тот же хэш-тег не может быть использован дважды';
       return false;
     }

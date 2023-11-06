@@ -9,6 +9,6 @@ const getRandomInteger = (min, max) => {
   return Math.round(fraction);
 };
 
-const getUnique = (array) => array.filter((element, index) => index === array.indexOf(element));
+const getUniqueArrayItems = (array) => array.filter((element, index) => index === array.indexOf(element));
 
-export {getRandomItem, getRandomInteger, getUnique};
+export {getRandomItem, getRandomInteger, getUniqueArrayItems};
