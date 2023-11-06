@@ -49,6 +49,12 @@ const validateHashtagData = (hashtagValue) => {
   if (hashtagValue) {
     const hashtagData = hashtagValue.toLowerCase().split(' ');
 
+    for (let i = 0; i < hashtagData.length; i++) {
+      if (!validateHashtag(hashtagData[i])) {
+        return false;
+      }
+    }
+
     if (hashtagData.length > 5) {
       error = 'Нельзя указать больше пяти хэш-тегов';
       return false;
@@ -57,12 +63,6 @@ const validateHashtagData = (hashtagValue) => {
     if (getUniqueArrayItems(hashtagData).length !== hashtagData.length) {
       error = 'Один и тот же хэш-тег не может быть использован дважды';
       return false;
-    }
-
-    for (let i = 0; i < hashtagData.length; i++) {
-      if (!validateHashtag(hashtagData[i])) {
-        return false;
-      }
     }
   }
 
