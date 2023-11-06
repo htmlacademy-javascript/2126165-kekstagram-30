@@ -4,7 +4,7 @@ import {validateForm, resetForm} from './validation.js';
 const form = document.querySelector('.img-upload__form');
 
 form.addEventListener('change', (event) => {
-  if (event.target.name === 'filename') {
+  if (event.target.name === 'filename') { //TODO Добавить оператор switch
     openPopup();
   }
 });
