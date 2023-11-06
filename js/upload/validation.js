@@ -1,5 +1,4 @@
 import '../../vendor/pristine/pristine.min.js';
-import {getUniqueArrayItems} from '../utilities.js';
 
 const form = document.querySelector('.img-upload__form');
 
