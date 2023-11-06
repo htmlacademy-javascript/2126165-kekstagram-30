@@ -1,7 +1,20 @@
-import {renderPopup} from './popup.js';
+import {openPopup} from './popup.js';
+import {validateForm, resetForm} from './validation.js';
 
-const renderUpload = () => {
-  renderPopup();
-};
+const form = document.querySelector('.img-upload__form');
 
-export {renderUpload};
+form.addEventListener('change', (event) => {
+  if (event.target.name === 'filename') {
+    openPopup();
+  }
+});
+
+form.addEventListener('submit', (event) => {
+  if (!validateForm()) {
+    event.preventDefault();
+  }
+});
+
+form.addEventListener('reset', () => {
+  resetForm();
+});
