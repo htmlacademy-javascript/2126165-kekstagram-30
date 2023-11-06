@@ -4,17 +4,10 @@ const pictureUpload = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
 const popup = document.querySelector('.img-upload__overlay');
 const closeButton = document.querySelector('.img-upload__cancel');
-const hashtagField = document.querySelector('.text__hashtags');
-const descriptionField = document.querySelector('.text__description');
 
 const onDocumentKeydown = (event) => {
-  if (event.key.startsWith('Esc')) {
-
-    if (document.activeElement === hashtagField || document.activeElement === descriptionField) {
-      event.stopPropagation();
-    } else {
-      closeButton.click();
-    }
+  if (event.key.startsWith('Esc') && !event.target.type?.startsWith('text')) {
+    closeButton.click();
   }
 };
 
