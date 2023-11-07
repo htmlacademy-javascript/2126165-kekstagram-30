@@ -4,6 +4,7 @@ import '../../vendor/nouislider/nouislider.css';
 const container = document.querySelector('.img-upload__effect-level');
 const slider = document.querySelector('.effect-level__slider');
 const picture = document.querySelector('.img-upload__preview img');
+const field = document.querySelector('.effect-level__value');
 
 container.classList.add('hidden'); // TODO перенести в функцию
 
@@ -33,6 +34,7 @@ const createEffect = (effect, significance = '') => {
 
   slider.noUiSlider.on('update', () => {
     picture.style.filter = `${effect}(${slider.noUiSlider.get()}${significance})`;
+    field.value = slider.noUiSlider.get();
   });
 };
 
