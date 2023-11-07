@@ -7,6 +7,10 @@ const form = document.querySelector('.img-upload__form');
 const picture = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 
+const transformPictureScale = () => {
+  picture.style.transform = `scale(${currentScaleValue / 100})`;
+};
+
 const resetPictureScale = () => {
   picture.style.transform = 'none';
 };
@@ -33,9 +37,7 @@ form.addEventListener('change', (event) => {
       return openPopup();
     case 'effect':
       return renderEffect(event.target.id);
+    case 'scale':
+      return transformPictureScale();
   }
-});
-
-form.addEventListener('scaleChange', () => {
-  picture.style.transform = `scale(${currentScaleValue / 100})`;
 });
