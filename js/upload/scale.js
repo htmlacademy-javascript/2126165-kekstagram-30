@@ -22,4 +22,9 @@ const onBiggerClick = () => {
   }
 };
 
-export {onSmallerClick, onBiggerClick};
+const resetScale = () => {
+  scaleValue.value = '100%';
+  picture.style.transform = 'none';
+};
+
+export {onSmallerClick, onBiggerClick, resetScale};
