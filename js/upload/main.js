@@ -5,8 +5,8 @@ import {renderEffect} from './effects.js';
 export {renderEffect} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
-const smaller = document.querySelector('.scale__control--smaller');
-const bigger = document.querySelector('.scale__control--bigger');
+const addButton = document.querySelector('.scale__control--smaller');
+const removeButton = document.querySelector('.scale__control--bigger');
 
 form.addEventListener('submit', (event) => {
   if (!validateForm()) {
@@ -27,5 +27,5 @@ form.addEventListener('change', (event) => {
   }
 });
 
-smaller.addEventListener('click', onSmallerClick);
-bigger.addEventListener('click', onBiggerClick);
+addButton.addEventListener('click', onSmallerClick);
+removeButton.addEventListener('click', onBiggerClick);
