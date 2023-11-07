@@ -125,4 +125,6 @@ const renderEffect = (effect) => {
   }
 };
 
-export {renderEffect};
+const resetEffect = () => noEffect();
+
+export {renderEffect, resetEffect};

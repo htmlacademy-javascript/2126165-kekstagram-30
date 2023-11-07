@@ -1,8 +1,7 @@
 import {openPopup} from './popup.js';
 import {validateForm, resetForm} from './validation.js';
 import {onSmallerClick, onBiggerClick} from './scale.js';
-import {renderEffect} from './effects.js';
-export {renderEffect} from './effects.js';
+import {renderEffect, resetEffect} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
 const addButton = document.querySelector('.scale__control--smaller');
@@ -16,6 +15,7 @@ form.addEventListener('submit', (event) => {
 
 form.addEventListener('reset', () => {
   resetForm();
+  resetEffect();
 });
 
 form.addEventListener('change', (event) => {
