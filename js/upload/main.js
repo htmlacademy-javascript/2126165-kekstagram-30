@@ -1,6 +1,6 @@
 import {openPopup} from './popup.js';
 import {validateForm, resetForm} from './validation.js';
-import {onSmallerClick, onBiggerClick, resetScale} from './scale.js';
+import {onRemoveButtonClick, onAddButtonClick, resetScale} from './scale.js';
 import {renderEffect, resetEffect} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -24,8 +24,8 @@ form.addEventListener('change', (event) => {
   switch (event.target.name) {
     case 'filename':
       sliderContainer.classList.add('hidden');
-      addButton.addEventListener('click', onSmallerClick);
-      removeButton.addEventListener('click', onBiggerClick);
+      addButton.addEventListener('click', onRemoveButtonClick);
+      removeButton.addEventListener('click', onAddButtonClick);
       return openPopup();
     case 'effect':
       return renderEffect(event.target.id);

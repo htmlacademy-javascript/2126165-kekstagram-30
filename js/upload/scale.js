@@ -8,14 +8,14 @@ const transformPicture = () => {
   picture.style.transform = `scale(${currentScaleValue / 100})`;
 };
 
-const onSmallerClick = () => {
+const onRemoveButtonClick = () => {
   if (currentScaleValue > 25) {
     scaleValue.value = `${currentScaleValue -= 25}%`;
     transformPicture();
   }
 };
 
-const onBiggerClick = () => {
+const onAddButtonClick = () => {
   if (currentScaleValue < 100) {
     scaleValue.value = `${currentScaleValue += 25}%`;
     transformPicture();
@@ -27,4 +27,4 @@ const resetScale = () => {
   picture.style.transform = 'none';
 };
 
-export {onSmallerClick, onBiggerClick, resetScale};
+export {onRemoveButtonClick, onAddButtonClick, resetScale};
