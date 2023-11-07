@@ -35,3 +35,7 @@ form.addEventListener('change', (event) => {
       return renderEffect(event.target.id);
   }
 });
+
+form.addEventListener('scaleChange', () => {
+  picture.style.transform = `scale(${currentScaleValue / 100})`;
+});
