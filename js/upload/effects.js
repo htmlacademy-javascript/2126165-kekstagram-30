@@ -29,11 +29,11 @@ noUiSlider.create(slider, {
   }
 });
 
-const createEffect = (effect, significance = '') => {
+const createEffect = (effect, units = '') => {
   container.classList.remove('hidden');
 
   slider.noUiSlider.on('update', () => {
-    picture.style.filter = `${effect}(${slider.noUiSlider.get()}${significance})`;
+    picture.style.filter = `${effect}(${slider.noUiSlider.get()}${units})`;
     field.value = slider.noUiSlider.get();
   });
 };
