@@ -6,7 +6,7 @@ const removeButton = document.querySelector('.scale__control--bigger');
 let currentScaleValue = parseInt(scaleValue.value, 10);
 
 const renderScale = () => {
-  scaleValue.dispatchEvent(new CustomEvent('scaleChange', {bubbles: true}));
+  scaleValue.dispatchEvent(new CustomEvent('change', {bubbles: true}));
 };
 
 const onRemoveButtonClick = () => {
