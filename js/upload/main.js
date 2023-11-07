@@ -21,11 +21,10 @@ form.addEventListener('reset', () => {
 form.addEventListener('change', (event) => {
   switch (event.target.name) {
     case 'filename':
+      addButton.addEventListener('click', onSmallerClick);
+      removeButton.addEventListener('click', onBiggerClick);
       return openPopup();
     case 'effect':
       return renderEffect(event.target.id);
   }
 });
-
-addButton.addEventListener('click', onSmallerClick);
-removeButton.addEventListener('click', onBiggerClick);
