@@ -3,7 +3,6 @@ import '../../vendor/nouislider/nouislider.css';
 
 const container = document.querySelector('.img-upload__effect-level');
 const slider = document.querySelector('.effect-level__slider');
-const picture = document.querySelector('.img-upload__preview img');
 const field = document.querySelector('.effect-level__value');
 
 noUiSlider.create(slider, {
@@ -27,18 +26,20 @@ noUiSlider.create(slider, {
   }
 });
 
+let filter;
+
 const createEffect = (effect, units = '') => {
   container.classList.remove('hidden');
 
   slider.noUiSlider.on('update', () => {
-    picture.style.filter = `${effect}(${slider.noUiSlider.get()}${units})`;
+    filter = `${effect}(${slider.noUiSlider.get()}${units})`;
     field.value = slider.noUiSlider.get();
+    field.dispatchEvent(new CustomEvent('change', {bubbles: true}));
   });
 };
 
 const noEffect = () => {
   container.classList.add('hidden');
-  picture.style.filter = 'none';
 };
 
 const chromeEffect = () => {
@@ -125,4 +126,4 @@ const renderEffect = (effect) => {
 
 const resetEffect = () => noEffect();
 
-export {renderEffect, resetEffect};
+export {renderEffect, resetEffect, filter};
