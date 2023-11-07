@@ -1,30 +1,35 @@
 const scale = document.querySelector('.img-upload__scale');
 const scaleValue = scale.querySelector('.scale__control--value');
-const picture = document.querySelector('.img-upload__preview img');
+const addButton = document.querySelector('.scale__control--smaller');
+const removeButton = document.querySelector('.scale__control--bigger');
 
 let currentScaleValue = parseInt(scaleValue.value, 10);
 
-const transformPicture = () => {
-  picture.style.transform = `scale(${currentScaleValue / 100})`;
+const renderScale = () => {
+  scaleValue.dispatchEvent(new CustomEvent('scaleChange', {bubbles: true}));
 };
 
 const onRemoveButtonClick = () => {
   if (currentScaleValue > 25) {
     scaleValue.value = `${currentScaleValue -= 25}%`;
-    transformPicture();
   }
+
+  renderScale();
 };
 
 const onAddButtonClick = () => {
   if (currentScaleValue < 100) {
     scaleValue.value = `${currentScaleValue += 25}%`;
-    transformPicture();
   }
+
+  renderScale();
 };
 
 const resetScale = () => {
   scaleValue.value = '100%';
-  picture.style.transform = 'none';
 };
 
-export {onRemoveButtonClick, onAddButtonClick, resetScale};
+addButton.addEventListener('click', onRemoveButtonClick);
+removeButton.addEventListener('click', onAddButtonClick);
+
+export {currentScaleValue, resetScale};

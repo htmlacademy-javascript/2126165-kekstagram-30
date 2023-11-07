@@ -1,12 +1,17 @@
 import {openPopup} from './popup.js';
 import {validateForm, resetForm} from './validation.js';
-import {onRemoveButtonClick, onAddButtonClick, resetScale} from './scale.js';
+import {currentScaleValue, resetScale} from './scale.js';
 import {renderEffect, resetEffect} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
-const addButton = document.querySelector('.scale__control--smaller');
-const removeButton = document.querySelector('.scale__control--bigger');
+const picture = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
+
+const resetPictureScale = () => {
+  picture.style.transform = 'none';
+};
+
+const resetSlider = () => sliderContainer.classList.add('hidden');
 
 form.addEventListener('submit', (event) => {
   if (!validateForm()) {
@@ -17,15 +22,14 @@ form.addEventListener('submit', (event) => {
 form.addEventListener('reset', () => {
   resetForm();
   resetScale();
+  resetPictureScale();
   resetEffect();
 });
 
 form.addEventListener('change', (event) => {
   switch (event.target.name) {
     case 'filename':
-      sliderContainer.classList.add('hidden');
-      addButton.addEventListener('click', onRemoveButtonClick);
-      removeButton.addEventListener('click', onAddButtonClick);
+      resetSlider();
       return openPopup();
     case 'effect':
       return renderEffect(event.target.id);
