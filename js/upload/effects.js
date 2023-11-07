@@ -6,8 +6,6 @@ const slider = document.querySelector('.effect-level__slider');
 const picture = document.querySelector('.img-upload__preview img');
 const field = document.querySelector('.effect-level__value');
 
-container.classList.add('hidden'); // TODO перенести в функцию
-
 noUiSlider.create(slider, {
   range: {
     min: 1,
