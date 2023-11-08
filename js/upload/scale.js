@@ -1,5 +1,5 @@
 const [addButton, display, removeButton] = document.querySelectorAll('.scale__control');
-const scaleValue = scale.querySelector('.scale__control--value');
+const config = {min: 25, max: 100, step: 25, defaultValue: 100};
 
 let currentScaleValue = parseInt(scaleValue.value, 10);
 
