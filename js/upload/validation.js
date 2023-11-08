@@ -45,12 +45,12 @@ pristine.addValidator(form.description, (value) => {
   return value.length <= maxDescriptionLength;
 }, 'Длина комментария не может составлять больше 140 символов', 1, true);
 
-const validateForm = () => {
+const checkValidity = () => {
   pristine.validate();
 };
 
-const resetForm = () => {
+const resetValidity = () => {
   pristine.reset();
 };
 
-export {validateForm, resetForm};
+export {checkValidity, resetValidity};

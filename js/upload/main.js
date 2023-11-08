@@ -1,5 +1,5 @@
 import {openPopup} from './popup.js';
-import {validateForm, resetForm} from './validation.js';
+import {checkValidity, resetValidity} from './validation.js';
 import {getScale, resetScale} from './scale.js';
 import {setEffect, getEffectValue, resetEffect} from './effects.js';
 
@@ -23,13 +23,13 @@ form.addEventListener('change', (event) => {
 });
 
 form.addEventListener('submit', (event) => {
-  if (!validateForm()) {
+  if (!checkValidity()) {
     event.preventDefault();
   }
 });
 
 form.addEventListener('reset', () => {
-  resetForm();
+  resetValidity();
   resetScale();
   resetEffect();
 });
