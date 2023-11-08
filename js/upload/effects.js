@@ -9,8 +9,17 @@ const ranges = {
   chrome: [0, 1, 0.1],
   sepia: [0, 1, 0.1],
   marvin: [0, 100, 1],
-  phobos: [0, 3, 0,1],
+  phobos: [0, 3, 0, 1],
   heat: [1, 3, 0.1]
+};
+
+const formatters = {
+  none: () => '',
+  chrome: (value) => `grayscale(${value})`,
+  sepia: (value) => `sepia(${value})`,
+  marvin: (value) => `invert(${value}%)`,
+  phobos: (value) => `blur(${value}px)`,
+  heat: (value) => `brightness(${value})`
 };
 
 const createOptions = (type) => {
