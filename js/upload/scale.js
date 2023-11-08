@@ -1,7 +1,5 @@
-const scale = document.querySelector('.img-upload__scale');
+const [addButton, display, removeButton] = document.querySelectorAll('.scale__control');
 const scaleValue = scale.querySelector('.scale__control--value');
-const addButton = document.querySelector('.scale__control--smaller');
-const removeButton = document.querySelector('.scale__control--bigger');
 
 let currentScaleValue = parseInt(scaleValue.value, 10);
 
