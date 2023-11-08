@@ -1,19 +1,11 @@
 import {openPopup} from './popup.js';
 import {validateForm, resetForm} from './validation.js';
-import {currentScaleValue, resetScale} from './scale.js';
+import {getScale, resetScale} from './scale.js';
 import {renderEffect, resetEffect, filter} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
 const picture = document.querySelector('.img-upload__preview img');
 const sliderContainer = document.querySelector('.img-upload__effect-level');
-
-const transformPictureScale = () => {
-  picture.style.transform = `scale(${currentScaleValue / 100})`;
-};
-
-const resetPictureScale = () => {
-  picture.style.transform = 'none';
-};
 
 const createPictureFilter = () => {
   picture.style.filter = filter;
@@ -34,7 +26,6 @@ form.addEventListener('submit', (event) => {
 form.addEventListener('reset', () => {
   resetForm();
   resetScale();
-  resetPictureScale();
   resetEffect();
   resetPictureFilter();
 });
@@ -49,6 +40,7 @@ form.addEventListener('change', (event) => {
     case 'effect-level':
       return createPictureFilter();
     case 'scale':
-      return transformPictureScale();
+      picture.style.transform = `scale(${getScale() / 100})`;
+      break;
   }
 });
