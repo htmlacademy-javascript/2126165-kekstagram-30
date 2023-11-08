@@ -2,29 +2,30 @@ import '../../vendor/nouislider/nouislider.js';
 import '../../vendor/nouislider/nouislider.css';
 
 const container = document.querySelector('.img-upload__effect-level');
-const slider = document.querySelector('.effect-level__slider');
 const field = document.querySelector('.effect-level__value');
 
-noUiSlider.create(slider, {
-  range: {
-    min: 1,
-    max: 10,
-  },
-  start: 10,
-  step: 0.1,
-  connect: 'lower',
-  format: {
-    to: function (value) {
-      if (Number.isInteger(value)) {
-        return value.toFixed(0);
-      }
-      return value.toFixed(1);
-    },
-    from: function (value) {
-      return parseFloat(value);
-    },
-  }
-});
+const ranges = {
+  none: [0, 100, 1],
+  chrome: [0, 1, 0.1],
+  sepia: [0, 1, 0.1],
+  marvin: [0, 100, 1],
+  phobos: [0, 3, 0,1],
+  heat: [1, 3, 0.1]
+};
+
+const createOptions = (type) => {
+  const [min, max, step] = ranges[type];
+  return {
+    range: {min, max},
+    step,
+    start: max,
+    connect: 'lower',
+    behaviour: 'snap smooth-steps'
+  };
+};
+
+const slider = document.querySelector('.effect-level__slider');
+noUiSlider.create(slider, createOptions('none'));
 
 let filter;
 
