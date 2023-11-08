@@ -1,16 +1,13 @@
 import '../../vendor/nouislider/nouislider.js';
 import '../../vendor/nouislider/nouislider.css';
 
-const container = document.querySelector('.img-upload__effect-level');
-const field = document.querySelector('.effect-level__value');
-
 const ranges = {
   none: [0, 100, 1],
-  chrome: [0, 1, 0.1],
-  sepia: [0, 1, 0.1],
+  chrome: [0, 1, .1],
+  sepia: [0, 1, .1],
   marvin: [0, 100, 1],
   phobos: [0, 3, 0, 1],
-  heat: [1, 3, 0.1]
+  heat: [1, 3, .1]
 };
 
 const formatters = {
@@ -28,112 +25,29 @@ const createOptions = (type) => {
     range: {min, max},
     step,
     start: max,
+    format: {from: String, to: formatters[type]},
     connect: 'lower',
     behaviour: 'snap smooth-steps'
   };
 };
 
-const slider = document.querySelector('.effect-level__slider');
-noUiSlider.create(slider, createOptions('none'));
+const container = document.querySelector('.effect-level');
+const level = document.querySelector('.effect-level__value');
+const placeholder = document.querySelector('.effect-level__slider');
+const slider = noUiSlider.create(placeholder, createOptions('none'));
 
-let filter;
-
-const createEffect = (effect, units = '') => {
-  container.classList.remove('hidden');
-
-  slider.noUiSlider.on('update', () => {
-    filter = `${effect}(${slider.noUiSlider.get()}${units})`;
-    field.value = slider.noUiSlider.get();
-    field.dispatchEvent(new CustomEvent('change', {bubbles: true}));
-  });
+const setEffect = (type) => {
+  container.classList.toggle('hidden', type === 'none');
+  slider.updateOptions(createOptions(type));
 };
 
-const noEffect = () => {
-  container.classList.add('hidden');
-};
+const getEffectValue = () => slider.get();
 
-const chromeEffect = () => {
-  slider.noUiSlider.updateOptions({
-    range: {
-      min: 0,
-      max: 1
-    },
-    start: 1,
-    step: 0.1
-  });
+const resetEffect = () => setEffect('none');
 
-  createEffect('grayscale');
-};
+slider.on('update', () => {
+  level.value = slider.get(true);
+  level.dispatchEvent(new Event('change', {bubbles: true}));
+});
 
-const sepiaEffect = () => {
-  slider.noUiSlider.updateOptions({
-    range: {
-      min: 0,
-      max: 1
-    },
-    start: 1,
-    step: 0.1
-  });
-
-  createEffect('sepia');
-};
-
-const marvinEffect = () => {
-  slider.noUiSlider.updateOptions({
-    range: {
-      min: 0,
-      max: 100
-    },
-    start: 100,
-    step: 1
-  });
-
-  createEffect('invert', '%');
-};
-
-const phobosEffect = () => {
-  slider.noUiSlider.updateOptions({
-    range: {
-      min: 0,
-      max: 3
-    },
-    start: 3,
-    step: 0.1
-  });
-
-  createEffect('blur', 'px');
-};
-
-const heatEffect = () => {
-  slider.noUiSlider.updateOptions({
-    range: {
-      min: 1,
-      max: 3
-    },
-    start: 3,
-    step: 0.1
-  });
-
-  createEffect('brightness');
-};
-
-const renderEffect = (effect) => {
-  switch (effect) {
-    case 'effect-none':
-      return noEffect();
-    case 'effect-chrome':
-      return chromeEffect();
-    case 'effect-sepia':
-      return sepiaEffect();
-    case 'effect-marvin':
-      return marvinEffect();
-    case 'effect-phobos':
-      return phobosEffect();
-    case 'effect-heat':
-      return heatEffect();
-  }
-};
-
-const resetEffect = () => noEffect();
-
-export {renderEffect, resetEffect, filter};
+export {setEffect, getEffectValue, resetEffect};
