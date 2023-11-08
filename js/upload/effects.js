@@ -6,7 +6,7 @@ const ranges = {
   chrome: [0, 1, .1],
   sepia: [0, 1, .1],
   marvin: [0, 100, 1],
-  phobos: [0, 3, 0, 1],
+  phobos: [0, 3, .1],
   heat: [1, 3, .1]
 };
 
