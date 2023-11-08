@@ -1,4 +1,4 @@
-const [addButton, display, removeButton] = document.querySelectorAll('.scale__control');
+const [scaleDownButton, display, scaleUpButton] = document.querySelectorAll('.scale__control');
 const config = {min: 25, max: 100, step: 25, defaultValue: 100};
 
 const setScale = (value) => {
@@ -12,11 +12,11 @@ const getScale = () => Number.parseFloat(display.value);
 
 const resetScale = () => setScale(config.defaultValue);
 
-const addScale = () => setScale(getScale() - config.step);
+const scaleDown = () => setScale(getScale() - config.step);
 
-const removeScale = () => setScale(getScale() + config.step);
+const scaleUp = () => setScale(getScale() + config.step);
 
-addButton.addEventListener('click', () => addScale());
-removeButton.addEventListener('click', () => removeScale());
+scaleDownButton.addEventListener('click', () => scaleDown());
+scaleUpButton.addEventListener('click', () => scaleUp());
 
 export {getScale, resetScale};
