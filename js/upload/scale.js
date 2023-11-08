@@ -1,33 +1,22 @@
 const [addButton, display, removeButton] = document.querySelectorAll('.scale__control');
 const config = {min: 25, max: 100, step: 25, defaultValue: 100};
 
-let currentScaleValue = parseInt(scaleValue.value, 10);
-
-const renderScale = () => {
-  scaleValue.dispatchEvent(new CustomEvent('change', {bubbles: true}));
+const setScale = (value) => {
+  value = Math.max(value, config.min);
+  value = Math.min(value, config.max);
+  display.value = `${value}%`;
+  display.dispatchEvent(new Event('change', {bubbles: true}));
 };
 
-const onRemoveButtonClick = () => {
-  if (currentScaleValue > 25) {
-    scaleValue.value = `${currentScaleValue -= 25}%`;
-  }
+const getScale = () => Number.parseFloat(display.value);
 
-  renderScale();
-};
+const resetScale = () => setScale(config.defaultValue);
 
-const onAddButtonClick = () => {
-  if (currentScaleValue < 100) {
-    scaleValue.value = `${currentScaleValue += 25}%`;
-  }
+const addScale = () => setScale(getScale() - config.step);
 
-  renderScale();
-};
+const removeScale = () => setScale(getScale() + config.step);
 
-const resetScale = () => {
-  scaleValue.value = '100%';
-};
+addButton.addEventListener('click', () => addScale());
+removeButton.addEventListener('click', () => removeScale());
 
-addButton.addEventListener('click', onRemoveButtonClick);
-removeButton.addEventListener('click', onAddButtonClick);
-
-export {currentScaleValue, resetScale};
+export {getScale, resetScale};
