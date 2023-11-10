@@ -32,3 +32,9 @@ form.addEventListener('reset', () => {
   resetScale();
   resetEffect();
 });
+
+const resetForm = () => {
+  form.reset();
+};
+
+export {resetForm};
