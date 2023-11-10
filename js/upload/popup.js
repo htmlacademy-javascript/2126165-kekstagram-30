@@ -30,4 +30,4 @@ const closePopup = () => {
 
 closeButton.addEventListener('click', () => closePopup());
 
-export {openPopup};
+export {openPopup, closePopup};
