@@ -1,4 +1,4 @@
-const timeToShowMessage = 5000;
+const TIME_TO_SHOW_MESSAGE = 5000;
 
 const renderStatus = (statusType) => {
   const message = document.querySelector(`#${statusType}`)
@@ -15,7 +15,7 @@ const renderStatus = (statusType) => {
   if (statusType === 'data-error') {
     setTimeout(() => {
       closeMessage();
-    }, timeToShowMessage);
+    }, TIME_TO_SHOW_MESSAGE);
   } else {
     message.querySelector(`.${statusType}__button`).addEventListener('click', () => {
       closeMessage();
