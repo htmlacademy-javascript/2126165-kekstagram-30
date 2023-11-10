@@ -37,6 +37,9 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   blockSubmitButton();
   new FormData(form);
+  if (!checkValidity()) {
+    unblockSubmitButton();
+  }
 });
 
 form.addEventListener('reset', () => {
