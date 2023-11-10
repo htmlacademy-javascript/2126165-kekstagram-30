@@ -23,9 +23,8 @@ form.addEventListener('change', (event) => {
 });
 
 form.addEventListener('submit', (event) => {
-  if (!checkValidity()) {
-    event.preventDefault();
-  }
+  event.preventDefault();
+  new FormData(form);
 });
 
 form.addEventListener('reset', () => {
