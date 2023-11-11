@@ -1,8 +1,7 @@
 import {renderGallery} from './gallery/main.js';
 import {request} from './utilities.js';
 import {renderStatus} from './status.js';
-import {resetForm} from './upload/main.js';
-import {closePopup} from './upload/popup.js';
+import {setSubmitDisabled, resetForm} from './upload/main.js';
 
 const baseUrl = 'https://30.javascript.pages.academy/kekstagram';
 
@@ -12,15 +11,15 @@ try {
   renderStatus('data-error', {autoHide: 5000});
 }
 
-document.addEventListener('formdata', (event) => {
-  request(baseUrl, {
-    method: 'POST',
-    body: event.formData
-  })
-    .then(() => {
-      renderStatus('success');
-      resetForm();
-      closePopup();
-    })
-    .catch(() => renderStatus('error'));
+document.addEventListener('formdata', async (event) => {
+  try {
+    setSubmitDisabled(true);
+    await request(baseUrl, {method: 'post', body: event.formData});
+    resetForm();
+    renderStatus('success');
+  } catch {
+    renderStatus('error');
+  } finally {
+    setSubmitDisabled(false);
+  }
 });

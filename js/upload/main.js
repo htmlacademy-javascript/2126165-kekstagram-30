@@ -46,4 +46,4 @@ const resetForm = () => {
   closePopup();
 };
 
-export {resetForm, setSubmitDisabled};
+export {setSubmitDisabled, resetForm};
