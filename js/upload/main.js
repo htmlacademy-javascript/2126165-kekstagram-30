@@ -30,7 +30,9 @@ form.addEventListener('change', (event) => {
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  new FormData(form);
+  if (checkValidity()) {
+    new FormData(form);
+  }
 });
 
 form.addEventListener('reset', () => {
