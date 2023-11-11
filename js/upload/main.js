@@ -1,4 +1,4 @@
-import {openPopup} from './popup.js';
+import {openPopup, closePopup} from './popup.js';
 import {checkValidity, resetValidity} from './validation.js';
 import {getScale, resetScale} from './scale.js';
 import {setEffect, getEffectValue, resetEffect} from './effects.js';
@@ -41,6 +41,7 @@ form.addEventListener('reset', () => {
 
 const resetForm = () => {
   form.reset();
+  closePopup();
 };
 
 export {resetForm, setSubmitDisabled};
