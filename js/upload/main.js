@@ -7,14 +7,9 @@ const form = document.querySelector('.img-upload__form');
 const picture = document.querySelector('.img-upload__preview img');
 const submitButton = document.querySelector('.img-upload__submit');
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = 'Публикую...';
-};
-
-const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = 'Опубликовать';
+const setSubmitDisabled = (flag) => {
+  submitButton.disabled = flag;
+  submitButton.textContent = flag ? 'Публикую...' : 'Опубликовать';
 };
 
 form.addEventListener('change', (event) => {
@@ -35,22 +30,17 @@ form.addEventListener('change', (event) => {
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  blockSubmitButton();
   new FormData(form);
-  if (!checkValidity()) {
-    unblockSubmitButton();
-  }
 });
 
 form.addEventListener('reset', () => {
   resetValidity();
   resetScale();
   resetEffect();
-  unblockSubmitButton();
 });
 
 const resetForm = () => {
   form.reset();
 };
 
-export {resetForm};
+export {resetForm, setSubmitDisabled};
