@@ -4,17 +4,16 @@ import {renderStatus} from './status.js';
 import {resetForm} from './upload/main.js';
 import {closePopup} from './upload/popup.js';
 
-const GET_URL = 'https://30.javascript.pages.academy/kekstagram/data';
-const SEND_URL = 'https://30.javascript.pages.academy/kekstagram';
+const baseUrl = 'https://30.javascript.pages.academy/kekstagram';
 
-request(GET_URL, {
-  method: 'GET'
-})
-  .then((data) => renderGallery(data))
-  .catch(() => renderStatus('data-error', {autoHide: 5000}));
+try {
+  renderGallery(await request(`${baseUrl}/data`));
+} catch {
+  renderStatus('data-error', {autoHide: 5000});
+}
 
 document.addEventListener('formdata', (event) => {
-  request(SEND_URL, {
+  request(baseUrl, {
     method: 'POST',
     body: event.formData
   })
