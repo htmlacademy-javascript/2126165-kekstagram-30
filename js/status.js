@@ -1,38 +1,28 @@
-const TIME_TO_SHOW_MESSAGE = 5000;
+const renderStatus = (type, options = {}) => {
+  const template = document.querySelector(`#${type}`);
+  const status = template.content.querySelector(`.${type}`).cloneNode(true);
 
-const renderStatus = (statusType) => {
-  const message = document.querySelector(`#${statusType}`)
-    .content
-    .querySelector(`.${statusType}`)
-    .cloneNode(true);
+  document.body.appendChild(status);
 
-  document.body.appendChild(message);
-
-  const closeMessage = () => {
-    message.remove();
+  const onDocumentKeydown = (event) => {
+    if (event.key.startsWith('Esc')) {
+      status.click();
+      event.stopPropagation();
+    }
   };
 
-  if (statusType === 'data-error') {
-    setTimeout(() => {
-      closeMessage();
-    }, TIME_TO_SHOW_MESSAGE);
+  const onStatusClick = (event) => {
+    if (event.target.matches(`.${type}, .${type}__button`)) {
+      status.remove();
+      document.removeEventListener('keydown', onDocumentKeydown, {capture: true});
+    }
+  };
+
+  if (options.autoHide) {
+    window.setTimeout(() => status.remove(), options.autoHide);
   } else {
-    message.querySelector(`.${statusType}__button`).addEventListener('click', () => {
-      closeMessage();
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key.startsWith('Esc')) {
-        event.stopPropagation();
-        closeMessage();
-      }
-    }, true);
-
-    document.addEventListener('click', (event) => {
-      if (event.target === message) {
-        closeMessage();
-      }
-    });
+    status.addEventListener('click', onStatusClick);
+    document.addEventListener('keydown', onDocumentKeydown, {capture: true});
   }
 };
 

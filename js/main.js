@@ -11,7 +11,7 @@ request(GET_URL, {
   method: 'GET'
 })
   .then((data) => renderGallery(data))
-  .catch(() => renderStatus('data-error'));
+  .catch(() => renderStatus('data-error', {autoHide: 5000}));
 
 document.addEventListener('formdata', (event) => {
   request(SEND_URL, {
