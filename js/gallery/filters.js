@@ -11,6 +11,7 @@ const renderFilters = () => {
     });
 
     event.target.classList.toggle('img-filters__button--active');
+    document.dispatchEvent(new CustomEvent('filterSelect', {detail: event.target.id}));
   }));
 };
 
