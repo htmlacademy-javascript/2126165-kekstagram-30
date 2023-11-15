@@ -33,10 +33,10 @@ pristine.addValidator(form.hashtags, (value) => {
 pristine.addValidator(form.hashtags, (value) => {
   const symbol = '#';
   return split(value).every((hashtag) => hashtag !== symbol);
-}, 'Хеш-тег не может состоять только из одной решётки', 1, true);
+}, 'Хэш-тег не может состоять только из одной решётки', 1, true);
 
 pristine.addValidator(form.hashtags, (value) => {
-  const hashtagPattern = /^#[a-zа-я0-9]+$/i;
+  const hashtagPattern = /^#[a-zа-яё0-9]+$/i;
   return split(value).every((hashtag) => hashtagPattern.test(hashtag));
 }, 'Строка после решётки должна состоять из букв и чисел и не может содержать спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.', 1, true);
 
