@@ -4,21 +4,20 @@ import {getScale, resetScale} from './scale.js';
 import {setEffect, getEffectValue, resetEffect} from './effects.js';
 
 const form = document.querySelector('.img-upload__form');
-const uploadField = form.querySelector('.img-upload__input');
 const picture = form.querySelector('.img-upload__preview img');
-const effectPreviewPictures = form.querySelectorAll('.effects__preview');
+const thumbnails = form.querySelectorAll('.effects__preview');
 const submitButton = form.querySelector('.img-upload__submit');
 
-const uploadPicture = (fileExtensions = ['jpg', 'jpeg', 'png']) => {
-  const file = uploadField.files[0];
-  const validate = fileExtensions.some((value) => file.name.toLowerCase().endsWith(value));
-
-  if (validate) {
+const renderFile = (file) => {
+  if (file.type.startsWith('image')) {
     picture.src = URL.createObjectURL(file);
-    effectPreviewPictures.forEach((effectPreviewPicture) => {
-      effectPreviewPicture.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
-    });
   }
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.style.backgroundImage = `url(${picture.src})`;
+  });
+
+  openPopup();
 };
 
 const setSubmitDisabled = (flag) => {
@@ -29,8 +28,7 @@ const setSubmitDisabled = (flag) => {
 form.addEventListener('change', (event) => {
   switch (event.target.name) {
     case 'filename':
-      uploadPicture();
-      openPopup();
+      renderFile(...event.target.files);
       break;
     case 'effect-level':
       picture.style.filter = getEffectValue();
