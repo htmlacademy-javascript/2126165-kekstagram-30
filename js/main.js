@@ -1,12 +1,12 @@
 import {renderGallery} from './gallery/main.js';
-import {request} from './utilities.js';
+import {request, throttle} from './utilities.js';
 import {renderStatus} from './status.js';
 import {setSubmitDisabled, resetForm} from './upload/main.js';
 
 const baseUrl = 'https://30.javascript.pages.academy/kekstagram';
 
 try {
-  renderGallery(await request(`${baseUrl}/data`));
+  renderGallery(await request(`${baseUrl}/data`), throttle);
 } catch {
   renderStatus('data-error', {autoHide: 5000});
 }
