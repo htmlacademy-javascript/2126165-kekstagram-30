@@ -1,12 +1,11 @@
-const applyFilters = (array, type, quantity = 10) => {
-  switch (type) {
-    case 'filter-default':
-      return array.slice().sort((a, b) => a.id - b.id);
-    case 'filter-random':
-      return array.slice().sort(() => Math.random() - .5).slice(0, quantity);
-    case 'filter-discussed':
-      return array.slice().sort((a, b) => b.comments.length - a.comments.length);
-  }
+const applyRandomFilter = (picturesData, itemLimit = 10) => {
+  const compare = () => .5 - Math.random();
+  return picturesData.toSorted(compare).slice(0, itemLimit);
 };
 
-export {applyFilters};
+const applyDiscussedFilter = (picturesData) => {
+  const compare = (a, b) => b.comments.length - a.comments.length;
+  return picturesData.toSorted(compare);
+};
+
+export {applyRandomFilter, applyDiscussedFilter};
