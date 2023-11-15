@@ -1,18 +1,23 @@
-import {debounce} from '../utilities';
-
 const container = document.querySelector('.img-filters');
+
+const selectFilter = (id) => {
+  container.querySelectorAll('.img-filters__button').forEach((button) => {
+    button.classList.toggle('img-filters__button--active', button.id === id);
+  });
+
+  document.dispatchEvent(new CustomEvent('filterSelect', {detail: id}));
+};
+
+const onContainerClick = (event) => {
+  if (event.target.matches('.img-filters__button')) {
+    selectFilter(event.target.id);
+  }
+};
 
 const renderFilters = () => {
   container.classList.remove('img-filters--inactive');
 
-  container.addEventListener('click', debounce((event) => {
-    container.querySelectorAll('.img-filters__button--active').forEach((button) => {
-      button.classList.remove('img-filters__button--active');
-    });
-
-    event.target.classList.toggle('img-filters__button--active');
-    document.dispatchEvent(new CustomEvent('filterSelect', {detail: event.target.id}));
-  }));
+  container.addEventListener('click', onContainerClick);
 };
 
 export {renderFilters};
