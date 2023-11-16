@@ -3,13 +3,7 @@ import {request, throttle} from './utilities.js';
 import {renderStatus} from './status.js';
 import {setSubmitDisabled, resetForm} from './upload/main.js';
 
-const baseUrl = 'https://30.javascript.pages.academy/kekstagram';
-
-try {
-  renderGallery(await request(`${baseUrl}/data`), throttle);
-} catch {
-  renderStatus('data-error', {autoHide: 5000});
-}
+const baseUrl = 'https://30.javascript.pages.academy/kekstagram/';
 
 document.addEventListener('formdata', async (event) => {
   try {
@@ -23,3 +17,9 @@ document.addEventListener('formdata', async (event) => {
     setSubmitDisabled(false);
   }
 });
+
+try {
+  renderGallery(await request(`${baseUrl}data`), throttle);
+} catch {
+  renderStatus('data-error', {autoHide: 5000});
+}
